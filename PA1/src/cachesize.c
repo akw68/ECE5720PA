@@ -5,7 +5,7 @@
 #define MAX_LENGTH 1 << 26
 #define MIN_SIZE 1 << 10
 
-float *A = (float *)malloc(sizeof(float) * MAX_LENGTH);
+//float *A = (float *)malloc(sizeof(float) * MAX_LENGTH);
 int main(int argc, char **argv)
 {
   int n, s, i, t;
@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   struct timespec start, end;
   double time;
   double T[17][26];
-
+  float *A = (float *)malloc(sizeof(float) * MAX_LENGTH);
   for (n = MIN_SIZE; n <= MAX_LENGTH; n << 1)
   {
     for (s = 1; s < n; s << 1)
@@ -34,6 +34,7 @@ int main(int argc, char **argv)
       time = time / BILLION / 10;
       T[n_][s_] = time;
       s_++;
+      printf("%f\n", time);
     }
   }
   s_ = 0;

@@ -36,7 +36,8 @@ int main(int argc, char **argv)
   }
 
   // Perform Multiplication (Record time)
-  for (int a = 0; a < NUM_TRIALS; a++)
+  int a;
+  for (a = 0; a < NUM_TRIALS; a++)
   {
     clock_gettime(CLOCK_MONOTONIC, &start);
     for (i = 0; i < n; i++)
@@ -58,7 +59,7 @@ int main(int argc, char **argv)
   // Average values over all trials
 
   double finaltime;
-  for (int a = 0; a < NUM_TRIALS; a++)
+  for (a = 0; a < NUM_TRIALS; a++)
   {
     finaltime += time[a];
   }
