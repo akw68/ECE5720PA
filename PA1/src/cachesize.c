@@ -31,12 +31,27 @@ int main(int argc, char **argv)
       }
       clock_gettime(CLOCK_MONOTONIC, &end);
       time = BILLION * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec);
-      time = time / BILLION / s / 10;
+      time = time / n / 10;
       T[n_][s_] = time;
       s_++;
       printf("n = %d i = %d s = %d   %f\n", n, i, s, time);
     }
+    s_ = 0;
+    n_++;
   }
   s_ = 0;
   n_++;
+  
+  int j;
+  FILE *file;
+  file = fopen("cache_res.csv", "w");
+  for(i = 0; i < 17; i++)
+  {
+    for(j = 0; j < 26; j++)
+    {
+      fprintf(file, "%f, ", T[i][j]);
+    }
+    fprintf(file, "\n");
+  }
+  fclose(file);
 }
