@@ -8,7 +8,7 @@
 //float *A = (float *)malloc(sizeof(float) * MAX_LENGTH);
 int main(int argc, char **argv)
 {
-  int n, s, i, t;
+  int n, s, i, k;
   int s_ = 0;
   int n_ = 0;
   register float curr;
@@ -16,13 +16,13 @@ int main(int argc, char **argv)
   double time;
   double T[17][26];
   float *A = (float *)malloc(sizeof(float) * MAX_LENGTH);
-  for (n = MIN_SIZE; n <= MAX_LENGTH; n << 1)
+  for (n = MIN_SIZE; n <= MAX_LENGTH; n = n << 1)
   {
-    for (s = 1; s < n; s << 1)
+    for (s = 1; s < n; s = s << 1)
     {
       //Start timer
       clock_gettime(CLOCK_MONOTONIC, &start);
-      for (t = 0; t < 10; t++) //Repeat 10 times
+      for (k = 0; k < s * 10; k++)
       {
         for (i = 0; i < n; i += s)
         {
@@ -31,10 +31,10 @@ int main(int argc, char **argv)
       }
       clock_gettime(CLOCK_MONOTONIC, &end);
       time = BILLION * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec);
-      time = time / BILLION / 10;
+      time = time / BILLION / s / 10;
       T[n_][s_] = time;
       s_++;
-      printf("%f\n", time);
+      printf("n = %d i = %d s = %d   %f\n", n, i, s, time);
     }
   }
   s_ = 0;
