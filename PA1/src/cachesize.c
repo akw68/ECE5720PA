@@ -26,12 +26,12 @@ int main(int argc, char **argv)
       {
         for (i = 0; i < n; i += s)
         {
-          curr = A[i];
+          A[i]++;
         }
       }
       clock_gettime(CLOCK_MONOTONIC, &end);
       time = BILLION * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec);
-      time = time / BILLION / s / 10;
+      time = time / BILLION / n / 10;
       T[n_][s_] = time;
       s_++;
       printf("n = %d i = %d s = %d   %f\n", n, i, s, time);
